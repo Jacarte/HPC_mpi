@@ -22,6 +22,6 @@ jobs:
           make -j
           sudo make install
       - name: Test hello-world
-        run: cd hello && export CC="mpicc" make && ./hello.out
+        run: cd hello && export CC="mpicc" make && mpiexec -np 4 hello.out
   
       
