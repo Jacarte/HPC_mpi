@@ -120,7 +120,7 @@
 %                         Start here
 % --------------------------------------------------------------
  
-\title{Assignment 2: Programming with OpenMP} % replace with an appropriate title, choose something shortish & descriptive
+\title{Assignment 3: MPI Programming} % replace with an appropriate title, choose something shortish & descriptive
 \author{Javier Cabrera Arteaga, Deepika Tiwari} % replace with your name, multiple authors go in alphabetical order by last name
  
 \maketitle
@@ -133,5 +133,53 @@ FDD3258 - Introduction to High-Performance Computing (MPI module)
 \hrule
 \vspace{.2in}
 
+\section{Exercise 1 - MPI Hello World, Get Familiar with the MPI Environment}
+\begin{enumerate}
+    \item Write the Hello World Code in C\\
+    \begin{lstlisting}[style=CStyle]
+#include <mpi.h>
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+
+	int rank, size, i, provided;
+
+	MPI_Init_thread(&argc, &argv, MPI_THREAD_SINGLE, &provided);
+
+	MPI_Comm_size(MPI_COMM_WORLD, &size);
+	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+	printf("My rank %d of %d\n", rank, size);
+
+	MPI_Finalize();
+	return 0;
+}
+	\end{lstlisting}
+	
+\textit{Sample output:}
+\begin{lstlisting}
+My rank 0 of 5
+My rank 1 of 5
+My rank 2 of 5
+My rank 3 of 5
+My rank 4 of 5
+\end{lstlisting}
+	
+	\item Answer the following questions:
+	\begin{itemize}
+	    \item How do you compile it, which compiler and flags have you used if any?\\
+	    The above code is compiled on Beskow with \texttt{cc hello.c -o hello.out}
+	    \item How do you run the MPI code on Beskow?\\
+	    To run the compiled code on Beskow, we first ask for allocation with \texttt{salloc --nodes=1 -t 01:00:00 -A edu20.FDD3258} and then run with \texttt{srun -n 5 ./hello.out}
+	    \item How do you change the number of MPI processes?\\
+	    The number of MPI processes can be set via the \texttt{n} flag specified with \texttt{srun}. For instance, \texttt{srun -n 5 ./hello.out} will spawn 5 processes, and \texttt{srun -n 10 ./hello.out} will spawn 10.
+	    \item Which functions do you use for retrieving the rank of an MPI process and the total number of processes?\\
+	    \texttt{MPI\_Comm\_rank(MPI\_COMM\_WORLD, \&rank);} is the function call that retrieves the rank (or identifier) of the current MPI process and saves it into the integer \texttt{rank} variable. \texttt{MPI\_Comm\_size(MPI\_COMM\_WORLD, \&size);} retrieves the total number of MPI processes and saves the value in the integer \texttt{size} variable. Both of these values are obtained from the default MPI communicator, \texttt{MPI\_COMM\_WORLD}.
+	    \item What are the names of the most used MPI implementations?\\
+	    The most popular implementations compliant with the MPI standard are MPICH and OpenMPI.
+	\end{itemize}
+\end{enumerate}
+
+\section{Exercise 2 - Calculate PI with MPI}
 \end{document}
 
