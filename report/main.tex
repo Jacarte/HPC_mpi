@@ -223,5 +223,26 @@ My rank 4 of 5
 
 \subsection{MPI Blocking Communication \& Binary Tree Reduction Communication Algorithm}
 
+\subsection{MPI Non-Blocking Communication \& Linear Reduction Algorithm}
+
+\begin{enumerate}
+	\item Implement the code using non-blocking communication.
+	
+	The code is available in \textit{HPC\_mpi/pi/pi\_non\_blocking.c}.
+	\item  Measure the performance of the code (execution time) for 8, 16, 32,  64, 128 MPI processes and plot it
+	Answer the following questions:
+	\begin{enumerate}
+		\item What are the MPI functions for non-blocking communication? 
+		
+		The functions for non-blocking communication are \texttt{MPI
+		\_Irecv(<response buffer pointer>, <size of the data>,<data type>, <process rank>, <message tag>, MPI\_COMM\_WORLD, <wait\_for buffer pointer>)}
+
+
+		\item What does the "I" in front of function name stand for in non-blocking communication?
+		\item How the performance of non-blocking communication compares to the performance of blocking communication. e.g. performance results in 2.1?
+	\end{enumerate}
+	
+\end{enumerate}
+
 \end{document}
 
