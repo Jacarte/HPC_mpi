@@ -252,7 +252,36 @@ My rank 4 of 5
 		Initiate?
 
 		\item How the performance of non-blocking communication compares to the performance of blocking communication. e.g. performance results in 2.1?
-	\end{enumerate}
+  
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> srun -n 5 non_blocking.out 
+% pi: 3.141114
+% Execution Time: 0.111884
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> srun -n 8 non_blocking.out 
+% pi: 3.141549
+% Execution Time: 0.077699
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> srun -n 16 non_blocking.out 
+% pi: 3.141375
+% Execution Time: 0.044840
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> srun -n 32 non_blocking.out 
+% pi: 3.142038
+% Execution Time: 0.022413
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> srun -n 64 non_blocking.out 
+% pi: 3.141475
+% Execution Time: 0.012153
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> srun -n 128 non_blocking.out 
+% pi: 3.142132
+% Execution Time: 0.009045
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{graph-pi-non-blocking.png}
+  \caption{MPI Non Blocking Communication between 8 to 128 processes}
+  \label{fig:blocking}
+\end{figure}
+
+The non-blocking approach performs better since the manager process (rank 0) does not wait for the others to calculate its part.
+
+  \end{enumerate}
 	
 \end{enumerate}
 
