@@ -288,13 +288,21 @@ The non-blocking approach performs better since the manager process (rank 0) doe
 
 \subsection{MPI Collective MPI\_Gather}
 
+\begin{enumerate}
+  
+  \item Implement the code using non-blocking communication.
+    
+  The code is available in \textit{HPC\_mpi/pi/pi\_gather.c}.
+  \item  Measure the performance of the code (execution time) for 8, 16, 32,  64, 128 MPI processes and plot it
+   
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graph-pi-mpi-gather.png}
+    \caption{MPI\_Gather 8 to 128 processes}
+    \label{fig:blocking}
+  \end{figure}
+\end{enumerate}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\textwidth]{graph-pi-mpi-gather.png}
-  \caption{MPI\_Gather 8 to 128 processes}
-  \label{fig:blocking}
-\end{figure}
 % javierca@beskow-login2:/cfs/klemming/scratch/j/% javierca/HPC_MPI/HPC_mpi/pi> srun -n 8 gather.out 
 % pi: 3.141302
 % Execution Time: 0.071430
@@ -314,13 +322,20 @@ The non-blocking approach performs better since the manager process (rank 0) doe
 
 \subsection{MPI Collective MPI\_Reduce}
 
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\textwidth]{graph-pi-mpi-reduce.png}
-  \caption{MPI\_Reduce 8 to 128 processes}
-  \label{fig:blocking}
-\end{figure}
+\begin{enumerate}
+  
+  \item Implement the code using non-blocking communication.
+    
+  The code is available in \textit{HPC\_mpi/pi/pi\_collective.c}.
+  \item  Measure the performance of the code (execution time) for 8, 16, 32,  64, 128 MPI processes and plot it
+   
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graph-pi-mpi-reduce.png}
+    \caption{MPI\_Reduce 8 to 128 processes}
+    \label{fig:blocking}
+  \end{figure}
+\end{enumerate}
 % javierca@beskow-login2:/cfs/klemming/scratch/j/% javierca/HPC_MPI/HPC_mpi/pi> srun -n 8 collective.% out 
 % pi: 3.141894
 % Execution Time: 0.080002
