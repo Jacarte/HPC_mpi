@@ -234,11 +234,23 @@ My rank 4 of 5
 	\begin{enumerate}
 		\item What are the MPI functions for non-blocking communication? 
 		
-		The functions for non-blocking communication are \texttt{MPI
-		\_Irecv(<response buffer pointer>, <size of the data>,<data type>, <process rank>, <message tag>, MPI\_COMM\_WORLD, <wait\_for buffer pointer>)}
+		The functions for non-blocking communication are 
+		
+		\texttt{MPI
+		\_Irecv()} Register a callback buffer to add the result without waiting blocking the execution
 
+
+		\texttt{MPI\_Waitall()} Wait for all made calls registered before by \texttt{MPI
+		\_Irecv()}
+
+		The previous mentioned method for blocking calls can be used as well with these non-blocking method. This can be appreciated in \url{https://github.com/Jacarte/HPC_mpi/blob/ca767b5958557a4f4b1d8cfb79d6e91e8662fed7/pi/pi_non_blocking.c#L66}
+
+		
 
 		\item What does the "I" in front of function name stand for in non-blocking communication?
+		
+		Initiate?
+
 		\item How the performance of non-blocking communication compares to the performance of blocking communication. e.g. performance results in 2.1?
 	\end{enumerate}
 	

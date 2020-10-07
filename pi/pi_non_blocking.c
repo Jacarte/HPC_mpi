@@ -5,12 +5,10 @@
 #include <time.h>
 
 
-#define NUM_ITER 1000000000
-
 int main(int argc, char *argv[]){
 
 	int rank, num_ranks, i, iter, provided;
-	int local_count = 0, total = NUM_ITER;
+	int local_count = 0, total = 1 << 24;
 	double x, y, z, pi;
 
 	MPI_Init_thread(&argc, &argv, MPI_THREAD_SINGLE, &provided);
