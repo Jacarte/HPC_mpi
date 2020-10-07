@@ -285,5 +285,65 @@ The non-blocking approach performs better since the manager process (rank 0) doe
 	
 \end{enumerate}
 
+
+\subsection{MPI Collective MPI\_Gather}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{graph-pi-mpi-gather.png}
+  \caption{MPI\_Gather 8 to 128 processes}
+  \label{fig:blocking}
+\end{figure}
+% javierca@beskow-login2:/cfs/klemming/scratch/j/% javierca/HPC_MPI/HPC_mpi/pi> srun -n 8 gather.out 
+% pi: 3.141302
+% Execution Time: 0.071430
+% javierca@beskow-login2:/cfs/klemming/scratch/j/% javierca/HPC_MPI/HPC_mpi/pi> srun -n 16 gather.out 
+% pi: 3.140568
+% Execution Time: 0.038054
+% javierca@beskow-login2:/cfs/klemming/scratch/j/% javierca/HPC_MPI/HPC_mpi/pi> srun -n 32 gather.out 
+% pi: 3.141721
+% Execution Time: 0.027142
+% javierca@beskow-login2:/cfs/klemming/scratch/j/% javierca/HPC_MPI/HPC_mpi/pi> srun -n 64 gather.out 
+% pi: 3.141775
+% Execution Time: 0.012407
+% javierca@beskow-login2:/cfs/klemming/scratch/j/% javierca/HPC_MPI/HPC_mpi/pi> srun -n 128 gather.% out 
+% pi: 3.141996
+% Execution Time: 0.008289
+% javierca@beskow-login2:/cfs/klemming/scratch/j/% javierca/HPC_MPI/HPC_mpi/pi> 
+
+\subsection{MPI Collective MPI\_Reduce}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{graph-pi-mpi-reduce.png}
+  \caption{MPI\_Reduce 8 to 128 processes}
+  \label{fig:blocking}
+\end{figure}
+% javierca@beskow-login2:/cfs/klemming/scratch/j/% javierca/HPC_MPI/HPC_mpi/pi> srun -n 8 collective.% out 
+% pi: 3.141894
+% Execution Time: 0.080002
+% javierca@beskow-login2:/cfs/klemming/scratch/j/% javierca/HPC_MPI/HPC_mpi/pi> srun -n 16 collective.% out 
+% pi: 3.141840
+% Execution Time: 0.045499
+% javierca@beskow-login2:/cfs/klemming/scratch/j/% javierca/HPC_MPI/HPC_mpi/pi> srun -n 32 collective.% out 
+% pi: 3.141454
+% Execution Time: 0.019708
+% javierca@beskow-login2:/cfs/klemming/scratch/j/% javierca/HPC_MPI/HPC_mpi/pi> srun -n 64 collective.% out 
+% pi: 3.141425
+% Execution Time: 0.011591
+% javierca@beskow-login2:/cfs/klemming/scratch/j/% javierca/HPC_MPI/HPC_mpi/pi> srun -n 128 % collective.out 
+% pi: 3.141079
+% Execution Time: 0.008663
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{all.png}
+  \caption{PI calculation with all approaches.}
+  \label{fig:blocking}
+\end{figure}
+
 \end{document}
 
