@@ -40,7 +40,8 @@ plt.cla()
 
 
 plt.grid(True)
-
+plt.xlabel("processes")
+plt.ylabel("execution time(s)")
 plt.plot([8, 16, 32, 64, 128], blocking, 'o-')
 plt.plot([8, 16, 32, 64, 128], non_blocking_data, 'o-')
 plt.plot([8, 16, 32, 64, 128], gather, 'o-')
