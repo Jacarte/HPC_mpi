@@ -1,1 +1,9 @@
 *.out
+*.aux
+main.pdf
+*.gz
+*.fls
+*.log
+*.fdb_*
+*-e
+__pycache__
