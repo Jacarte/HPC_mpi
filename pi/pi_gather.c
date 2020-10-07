@@ -22,10 +22,7 @@ int main(int argc, char *argv[]){
 	srand(time(NULL) + 123456789 + rank*100);
 
 	int flip = total/num_ranks;
-
-
-	MPI_Bcast( /*which data to send*/ &flip, 1, MPI_INT, /*sender rank*/  0, MPI_COMM_WORLD);
-
+	int counts[num_ranks];
 
 	for(iter = 0; iter < flip; iter ++){
 		x = (double)random()/(double)RAND_MAX;
@@ -36,12 +33,15 @@ int main(int argc, char *argv[]){
 			local_count++;
 	}
 
-	MPI_Reduce(&local_count, &global_count, 1, MPI_INT, MPI_SUM,  0, MPI_COMM_WORLD);
+	MPI_Gather(&local_count, 1, MPI_INT, &counts,1, MPI_INT, 0, MPI_COMM_WORLD);
 
+	if(rank == 0)
+		for(int i= 0;i < num_ranks; i++)
+			global_count += counts[i];
+
+	pi = (double)global_count/((double)total)*4;
 	stop_time = MPI_Wtime();
 	elapsed_time = stop_time - start_time;
-
-	pi = 4*(double)global_count/((double)total);
 
 	if(rank == 0){
 		printf("pi: %f\n", pi);
