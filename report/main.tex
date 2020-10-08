@@ -249,7 +249,7 @@ My rank 4 of 5
 
 		\item What does the "I" in front of function name stand for in non-blocking communication?
 		
-		Initiate?
+		The 'I' in MPI non-blocking communication methods stands for immediate.
 
 		\item How the performance of non-blocking communication compares to the performance of blocking communication. e.g. performance results in 2.1?
   
@@ -359,6 +359,23 @@ The non-blocking approach performs better since the manager process (rank 0) doe
   \caption{PI calculation with all approaches.}
   \label{fig:blocking}
 \end{figure}
+
+\section{Exercise 3}
+Run the ping-pong code and calculate the bandwidth and latency for
+\begin{enumerate}
+    \item intra-node communication (2 processes on the same node)
+    \item inter-node communication (2 processes on different nodes)
+\end{enumerate}
+Questions:
+\begin{enumerate}
+    \item Run the ping-pong benchmark for 1) and 2).
+    \item Plot ping-pong time in function of the message size for 1) and 2).
+    \item By best fit (using Matlab, Python, or similar), calculate the bandwidth and latency for 1) and 2).
+    \item Answer the following question
+    \begin{itemize}
+        \item For case 2), how do the obtained values of bandwidth and latency compare to the nominal Beskow network bandwidth and latency. What are the differences and what could be the explanation of the differences if any?
+    \end{itemize}
+\end{enumerate}
 
 \end{document}
 
