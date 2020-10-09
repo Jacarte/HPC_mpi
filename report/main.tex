@@ -369,7 +369,84 @@ Run the ping-pong code and calculate the bandwidth and latency for
 Questions:
 \begin{enumerate}
     \item Run the ping-pong benchmark for 1) and 2).
+    \begin{itemize}
+        \item To run 2 processes on the same node, we use the following commands on Beskow:\\
+        \texttt{salloc --nodes=1 -t 00:05:00 -A edu20.FDD3258 -C Haswell}\\
+        \texttt{srun -n 2 ./ping\_pong.out}
+
+%          8	    0.000000608
+%         16	    0.000000653
+%         32	    0.000000682
+%         64	    0.000000734
+%        128	    0.000000770
+%        256	    0.000000751
+%        512	    0.000000815
+%       1024	    0.000000978
+%       2048	    0.000001161
+%       4096	    0.000001707
+%       8192	    0.000003898
+%      16384	    0.000004125
+%      32768	    0.000007594
+%      65536	    0.000011530
+%     131072	    0.000024257
+%     262144	    0.000045474
+%     524288	    0.000088394
+%    1048576	    0.000173810
+%    2097152	    0.000345354
+%    4194304	    0.000689859
+%    8388608	    0.001377771
+%   16777216	    0.002741075
+%   33554432	    0.005612578
+%   67108864	    0.011531770
+%  134217728	    0.023308010
+%  268435456	    0.046876423
+%  536870912	    0.094284530
+% 1073741824	    0.193143849
+
+        \item To run 2 processes on different nodes, we use the following commands on Beskow:\\
+        \texttt{salloc --nodes=2 -t 01:00:00 -A edu20.FDD3258 -C Haswell}\\
+        \texttt{srun -n 2 --ntasks-per-node=1 ./ping\_pong.out}
+
+%          8	    0.000001717
+%         16	    0.000001941
+%         32	    0.000001702
+%         64	    0.000001564
+%        128	    0.000001600
+%        256	    0.000001712
+%        512	    0.000001829
+%       1024	    0.000001943
+%       2048	    0.000002546
+%       4096	    0.000003426
+%       8192	    0.000006628
+%      16384	    0.000006628
+%      32768	    0.000008008
+%      65536	    0.000013492
+%     131072	    0.000021279
+%     262144	    0.000032403
+%     524288	    0.000058684
+%    1048576	    0.000116324
+%    2097152	    0.000225928
+%    4194304	    0.000471337
+%    8388608	    0.000999577
+%   16777216	    0.002077246
+%   33554432	    0.004228852
+%   67108864	    0.008591294
+%  134217728	    0.017421808
+%  268435456	    0.034961929
+%  536870912	    0.071018376
+% 1073741824	    0.143390267
+
+    \end{itemize}
+
     \item Plot ping-pong time in function of the message size for 1) and 2).
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graph-ping-pong.png}
+    \caption{Ping-pong for intra- and inter-node communication on Beskow}
+    \label{fig:blocking}
+  \end{figure}
+
     \item By best fit (using Matlab, Python, or similar), calculate the bandwidth and latency for 1) and 2).
     \item Answer the following question
     \begin{itemize}
