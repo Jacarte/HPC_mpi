@@ -223,12 +223,27 @@ My rank 4 of 5
 
 \subsection{MPI Blocking Communication \& Binary Tree Reduction Communication Algorithm}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\textwidth]{graph-pi-bin-blocking.png}
-  \caption{MPI Blocking Communication between 8 to 128 processes}
-  \label{fig:blocking}
-\end{figure}
+\begin{enumerate}
+  \item Implement the code using a binary tree algorithm with MPI Send/Recv
+  Measure the performance of the code (execution time) for 8, 16, 32,  64, 128 MPI processes and plot it.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graph-pi-bin-blocking.png}
+    \caption{MPI Blocking Communication with binary tree reduction agorithm between 8 to 128 processes}
+    \label{fig:blocking}
+  \end{figure}
+  \item  
+  \begin{enumerate}
+    \item \textit{ How does the performance of binary tree reduction compare to the performance of linear reduction? }
+    \item \textit{Increasing the number of processes, which approach (linear/tree) is going to perform better? Why? Think about the number of messages and their costs.} 
+    
+    Following the topology of the binary reduction, in a delivery level, we will have as many messages as the distance from the root to the level is. The total number of meessages can be calculated overall as $N*\Sigma_{i=0}^{i=log_2N}(\frac{1}{2^i}) = \frac{3}{4}N$. So, in theory, the number of messages is $O(\frac{3}{4}N)$. The binary reeduction algorithm should perform better than the linear version.
+
+  \end{enumerate}
+ 
+\end{enumerate}
+
 
 % javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> % srun -n 8 ./binary.out 
 % pi: 3.141210
