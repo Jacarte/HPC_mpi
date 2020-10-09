@@ -223,6 +223,30 @@ My rank 4 of 5
 
 \subsection{MPI Blocking Communication \& Binary Tree Reduction Communication Algorithm}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{graph-pi-bin-blocking.png}
+  \caption{MPI Blocking Communication between 8 to 128 processes}
+  \label{fig:blocking}
+\end{figure}
+
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> % srun -n 8 ./binary.out 
+% pi: 3.141210
+% Execution Time: 0.070099
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> % srun -n 16 ./binary.out 
+% pi: 3.141980
+% Execution Time: 0.042145
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> % srun -n 32 ./binary.out 
+% pi: 3.141848
+% Execution Time: 0.022414
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> % srun -n 64 ./binary.out 
+% pi: 3.141273
+% Execution Time: 0.011446
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> % srun -n 128 ./binary.out 
+% pi: 3.142309
+% Execution Time: 0.009180
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> 
+
 \subsection{MPI Non-Blocking Communication \& Linear Reduction Algorithm}
 
 \begin{enumerate}
