@@ -38,7 +38,8 @@ plt.savefig("graph-pi-mpi-reduce.png", dpi=800)
 plt.cla()
 
 
-
+plt.yscale("log")
+plt.xscale("log")
 plt.grid(True)
 plt.xlabel("processes")
 plt.ylabel("execution time(s)")
