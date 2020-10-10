@@ -223,6 +223,45 @@ My rank 4 of 5
 
 \subsection{MPI Blocking Communication \& Binary Tree Reduction Communication Algorithm}
 
+\begin{enumerate}
+  \item Implement the code using a binary tree algorithm with MPI Send/Recv
+  Measure the performance of the code (execution time) for 8, 16, 32,  64, 128 MPI processes and plot it.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graph-pi-bin-blocking.png}
+    \caption{MPI Blocking Communication with binary tree reduction agorithm between 8 to 128 processes}
+    \label{fig:blocking}
+  \end{figure}
+  \item  
+  \begin{enumerate}
+    \item \textit{ How does the performance of binary tree reduction compare to the performance of linear reduction? }
+    \item \textit{Increasing the number of processes, which approach (linear/tree) is going to perform better? Why? Think about the number of messages and their costs.} 
+    
+    Following the topology of the binary reduction, in a delivery level, we will have as many messages as the distance from the root to the level is. The total number of meessages can be calculated overall as $N*\Sigma_{i=0}^{i=log_2N}(\frac{1}{2^i}) = \frac{3}{4}N$. So, in theory, the number of messages is $O(\frac{3}{4}N)$. The binary reeduction algorithm should perform better than the linear version.
+
+  \end{enumerate}
+ 
+\end{enumerate}
+
+
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> % srun -n 8 ./binary.out 
+% pi: 3.141210
+% Execution Time: 0.070099
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> % srun -n 16 ./binary.out 
+% pi: 3.141980
+% Execution Time: 0.042145
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> % srun -n 32 ./binary.out 
+% pi: 3.141848
+% Execution Time: 0.022414
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> % srun -n 64 ./binary.out 
+% pi: 3.141273
+% Execution Time: 0.011446
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> % srun -n 128 ./binary.out 
+% pi: 3.142309
+% Execution Time: 0.009180
+% javierca@beskow-login2:/cfs/klemming/scratch/j/javierca/HPC_MPI/HPC_mpi/pi> 
+
 \subsection{MPI Non-Blocking Communication \& Linear Reduction Algorithm}
 
 \begin{enumerate}
@@ -356,7 +395,7 @@ The non-blocking approach performs better since the manager process (rank 0) doe
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{all.png}
-  \caption{PI calculation with all approaches.}
+  \caption{PI calculation with all approaches. For sake of better illustration, both axis are logarithmically scaled.}
   \label{fig:blocking}
 \end{figure}
 
@@ -378,9 +417,9 @@ Questions:
 %         16	    0.000000653
 %         32	    0.000000682
 %         64	    0.000000734
-%        128        0.000000770
-%        256        0.000000751
-%        512        0.000000815
+%        128	    0.000000770
+%        256	    0.000000751
+%        512	    0.000000815
 %       1024	    0.000000978
 %       2048	    0.000001161
 %       4096	    0.000001707
@@ -394,7 +433,7 @@ Questions:
 %    1048576	    0.000173810
 %    2097152	    0.000345354
 %    4194304	    0.000689859
-%    8388608        0.001377771
+%    8388608	    0.001377771
 %   16777216	    0.002741075
 %   33554432	    0.005612578
 %   67108864	    0.011531770
@@ -404,7 +443,7 @@ Questions:
 % 1073741824	    0.193143849
 
         \item To run 2 processes on different nodes, we use the following commands on Beskow:\\
-        \texttt{salloc --nodes=2 -t 00:05:00 -A edu20.FDD3258 -C Haswell}\\
+        \texttt{salloc --nodes=2 -t 01:00:00 -A edu20.FDD3258 -C Haswell}\\
         \texttt{srun -n 2 --ntasks-per-node=1 ./ping\_pong.out}
 
 %          8	    0.000001717
@@ -427,7 +466,7 @@ Questions:
 %    1048576	    0.000116324
 %    2097152	    0.000225928
 %    4194304	    0.000471337
-%    8388608        0.000999577
+%    8388608	    0.000999577
 %   16777216	    0.002077246
 %   33554432	    0.004228852
 %   67108864	    0.008591294
@@ -447,12 +486,24 @@ Questions:
     \label{fig:blocking}
   \end{figure}
 
-    \item By best fit (using Matlab, Python, or similar), calculate the bandwidth and latency for 1) and 2).
+    \item By best fit (using Matlab, Python, or similar), calculate the bandwidth and latency for 1) and 2).\\
+    The values obtained from the polyfit function on Python are listed in the following table
+\begin{center}
+\begin{tabular}{ |c|c|c| }
+\hline
+\textbf{Communication mode} & \textbf{Latency} & \textbf{Bandwidth} \\
+\hline
+intra-node & 141.15ms & 5.6GB/s \\
+\hline
+inter-node & 84.97ms & 7.5GB/s \\
+\hline
+\end{tabular}
+\end{center}
     \item Answer the following question
     \begin{itemize}
-        \item For case 2), how do the obtained values of bandwidth and latency compare to the nominal Beskow network bandwidth and latency. What are the differences and what could be the explanation of the differences if any?
+        \item For case 2), how do the obtained values of bandwidth and latency compare to the nominal Beskow network bandwidth and latency. What are the differences and what could be the explanation of the differences if any?\\
+        The document by Cray titled \textit{Cray XC \textregistered Series Network} \footnote{https://www.nersc.gov/assets/Uploads/CrayXC30Networking.pdf} offers insight into the nominal performance of the Cray Aries Dragonfly network topology that connects the nodes on Beskow. According to the document, the peak bandwidth achievable by user processes for this topology is 10.2GB/s, but the average observed bandwidth is usually 8GB/s for each direction of the communication. This is due to the fact that data paths are shared between the request and response, as well as because of additional overheads between the host and subsequent nodes. Each hop adds additional latencies. The values we obtain with our experiments are consistent with these observations.
     \end{itemize}
 \end{enumerate}
-
 \end{document}
 
