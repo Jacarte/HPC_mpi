@@ -235,10 +235,12 @@ My rank 4 of 5
   \end{figure}
   \item  
   \begin{enumerate}
-    \item \textit{ How does the performance of binary tree reduction compare to the performance of linear reduction? }
+    \item \textit{ How does the performance of binary tree reduction compare to the performance of linear reduction? } 
+    The execution time fot eh binary tree reduction algorithm performs better than linear algorithm, as it can be seen in the above plot.
+
     \item \textit{Increasing the number of processes, which approach (linear/tree) is going to perform better? Why? Think about the number of messages and their costs.} 
     
-    Following the topology of the binary reduction, in a delivery level, we will have as many messages as the distance from the root to the level is. The total number of meessages can be calculated overall as $N*\Sigma_{i=0}^{i=log_2N}(\frac{1}{2^i}) = \frac{3}{4}N$. So, in theory, the number of messages is $O(\frac{3}{4}N)$. The binary reeduction algorithm should perform better than the linear version.
+    Following the topology of the binary reduction, in a delivery level, we will have as many messages as the distance from the root to the level is. The total number of meessages can be calculated overall as $N*\Sigma_{i=0}^{i=log_2N}(\frac{1}{2^i}) = \frac{3}{4}N$. So, in theory, the number of messages is $O(\frac{3}{4}N)$. The binary reeduction algorithm should perform better than the linear version. Besides, each process waits and send the same number of messages. This is probably the reason behind why this performs better.
 
   \end{enumerate}
  
