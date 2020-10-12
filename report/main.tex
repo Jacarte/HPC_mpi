@@ -488,12 +488,24 @@ Questions:
     \label{fig:blocking}
   \end{figure}
 
-    \item By best fit (using Matlab, Python, or similar), calculate the bandwidth and latency for 1) and 2).
+    \item By best fit (using Matlab, Python, or similar), calculate the bandwidth and latency for 1) and 2).\\
+    The values obtained from the polyfit function on Python are listed in the following table
+\begin{center}
+\begin{tabular}{ |c|c|c| }
+\hline
+\textbf{Communication mode} & \textbf{Latency} & \textbf{Bandwidth} \\
+\hline
+intra-node & 141.15ms & 5.6GB/s \\
+\hline
+inter-node & 84.97ms & 7.5GB/s \\
+\hline
+\end{tabular}
+\end{center}
     \item Answer the following question
     \begin{itemize}
-        \item For case 2), how do the obtained values of bandwidth and latency compare to the nominal Beskow network bandwidth and latency. What are the differences and what could be the explanation of the differences if any?
+        \item For case 2), how do the obtained values of bandwidth and latency compare to the nominal Beskow network bandwidth and latency. What are the differences and what could be the explanation of the differences if any?\\
+        The document by Cray titled \textit{Cray XC \textregistered Series Network} \footnote{https://www.nersc.gov/assets/Uploads/CrayXC30Networking.pdf} offers insight into the nominal performance of the Cray Aries Dragonfly network topology that connects the nodes on Beskow. According to the document, the peak bandwidth achievable by user processes for this topology is 10.2GB/s, but the average observed bandwidth is usually 8GB/s for each direction of the communication. This is due to the fact that data paths are shared between the request and response, as well as because of additional overheads between the host and subsequent nodes. Each hop adds additional latencies. The values we obtain with our experiments are consistent with these observations.
     \end{itemize}
 \end{enumerate}
-
 \end{document}
 
