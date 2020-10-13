@@ -125,6 +125,7 @@
  
 \maketitle
 
+
 {%
 \centering
 FDD3258 - Introduction to High-Performance Computing (MPI module)
@@ -132,6 +133,9 @@ FDD3258 - Introduction to High-Performance Computing (MPI module)
 }
 \hrule
 \vspace{.2in}
+
+All source code can be found here \url{https://github.com/Jacarte/HPC_mpi}.
+
 
 \section{Exercise 1 - MPI Hello World, Get Familiar with the MPI Environment}
 \begin{enumerate}
@@ -504,7 +508,7 @@ inter-node & 84.97ms & 7.5GB/s \\
     \item Answer the following question
     \begin{itemize}
         \item For case 2), how do the obtained values of bandwidth and latency compare to the nominal Beskow network bandwidth and latency. What are the differences and what could be the explanation of the differences if any?\\
-        The document by Cray titled \textit{Cray XC \textregistered Series Network} \footnote{https://www.nersc.gov/assets/Uploads/CrayXC30Networking.pdf} offers insight into the nominal performance of the Cray Aries Dragonfly network topology that connects the nodes on Beskow. According to the document, the peak bandwidth achievable by user processes for this topology is 10.2GB/s, but the average observed bandwidth is usually 8GB/s for each direction of the communication. This is due to the fact that data paths are shared between the request and response, as well as because of additional overheads between the host and subsequent nodes. Each hop adds additional latencies. The values we obtain with our experiments are consistent with these observations.
+        The document by Cray titled \textit{Cray XC \textregistered Series Network} \footnote{\url{https://www.nersc.gov/assets/Uploads/CrayXC30Networking.pdf}} offers insight into the nominal performance of the Cray Aries Dragonfly network topology that connects the nodes on Beskow. According to the document, the peak bandwidth achievable by user processes for this topology is 10.2GB/s, but the average observed bandwidth is usually 8GB/s for each direction of the communication. This is due to the fact that data paths are shared between the request and response, as well as because of additional overheads between the host and subsequent nodes. Each hop adds additional latencies. The values we obtain with our experiments are consistent with these observations.
     \end{itemize}
 \end{enumerate}
 \end{document}
